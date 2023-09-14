@@ -1,0 +1,8 @@
+{
+  "name": "fluenc-language-server",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "json-rpc-cxx",
+    "libfluenc-lang"
+  ]
+}

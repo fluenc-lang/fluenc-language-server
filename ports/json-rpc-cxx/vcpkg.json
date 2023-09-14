@@ -1,0 +1,13 @@
+{
+  "name": "json-rpc-cxx",
+  "version-date": "2023-08-12",
+  "description": " JSON-RPC for modern C++ ",
+  "homepage": "https://github.com/jsonrpcx/json-rpc-cxx",
+  "dependencies": [
+    "nlohmann-json",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "libfluenc-lang",
+  "version-string": "0.1.0",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    "immer",
+    "tomlplusplus",
+    "cpp-peglib",
+    "fmt",
+    "range-v3",
+	"boost-test",
+	"libarchive",
+	"cli11",
+	"libgit2"
+  ]
+}
