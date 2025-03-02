@@ -15,14 +15,25 @@ run_vcpkg(
 	VCPKG_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg
 )
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(fluenc-language-server LANGUAGES C CXX)
 
-find_package(libfluenc-lang CONFIG REQUIRED)
+find_package(Immer CONFIG REQUIRED)
+find_package(range-v3 CONFIG REQUIRED)
+find_package(fmt CONFIG REQUIRED)
+
+find_package(fluenc CONFIG REQUIRED CONFIGS
+	fluenc-lang-config.cmake
+)
+
+find_package(fluenc CONFIG REQUIRED CONFIGS
+	fluenc-grammar-config.cmake
+)
 
 find_path(JSON_RPC_CXX_INCLUDE_DIRS "jsonrpccxx/batchclient.hpp")
+find_path(FLUENC_INCLUDE_DIRS "fluenc-lang/token_info.hpp")
 
 add_executable(${PROJECT_NAME}
 	main.cpp
@@ -45,12 +56,29 @@ add_executable(${PROJECT_NAME}
 	protocol/Location.h
 	protocol/WorkspaceSymbol.h
 	protocol/TextDocumentItem.h
+	protocol/VersionedTextDocumentIdentifier.h
+	protocol/TextDocumentContentChangeEvent.h
+	protocol/WorkspaceFolder.h
+	protocol/Diagnostic.h
+	protocol/DiagnosticSeverity.h
+	ast_extractor.hpp
+	location_resolver.hpp
+	type_resolver.hpp
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${JSON_RPC_CXX_INCLUDE_DIRS})
+message(${FLUENC_INCLUDE_DIRS})
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+	${JSON_RPC_CXX_INCLUDE_DIRS}
+
+	"${FLUENC_INCLUDE_DIRS}/fluenc-lang"
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-	libfluenc-lang
+	incbin
+
+	fluenc::fluenc-lang
+	fluenc::fluenc-grammar
 )
 
 if (MSVC)
@@ -64,3 +92,5 @@ endif()
 add_custom_target(vcpkg SOURCES
 	vcpkg.json
 )
+
+add_subdirectory("incbin")

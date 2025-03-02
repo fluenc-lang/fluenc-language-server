@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index c86a794..babe581 100644
+index 7d207805..d323e280 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -4,17 +4,8 @@ if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
+@@ -4,18 +4,8 @@ if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
      cmake_policy(SET CMP0135 NEW)
  endif()
  
@@ -15,6 +15,7 @@ index c86a794..babe581 100644
  
 -run_vcpkg(
 -	VCPKG_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg
+-	VCPKG_REV "23b33f5a010e3d67132fa3c34ab6cd0009bb9296"
 -)
 -
  project(fluenc LANGUAGES C CXX)

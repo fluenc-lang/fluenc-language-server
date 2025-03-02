@@ -13,6 +13,9 @@ namespace lsp
 		std::optional<CompletionOptions> completionProvider;
 		std::optional<bool> hoverProvider;
 		std::optional<bool> documentHighlightProvider;
+		std::optional<bool> documentSymbolProvider;
+		std::optional<bool> referencesProvider;
+		std::optional<bool> declarationProvider;
 	};
 
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ServerCapabilities
@@ -21,5 +24,8 @@ namespace lsp
 		, completionProvider
 		, hoverProvider
 		, documentHighlightProvider
+		, documentSymbolProvider
+		, referencesProvider
+		, declarationProvider
 	)
 }
